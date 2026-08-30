@@ -1,0 +1,49 @@
+name: Feature request
+description: Suggest an improvement or new capability
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement to SaaS Metrics Dashboard.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or need
+      description: What problem would this feature solve?
+      placeholder: Explain the use case or limitation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature or behavior you would like to see.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe any alternative approaches or workarounds.
+
+  - type: textarea
+    id: methodology
+    attributes:
+      label: Metric methodology, if applicable
+      description: If this adds or changes a SaaS metric, include the proposed formula or methodology.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues for a similar request.
+          required: true
+        - label: I understand the project is in early active development.
+          required: true
