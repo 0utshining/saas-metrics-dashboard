@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="An open-source SaaS metrics dashboard for tracking MRR, ARR, churn, ARPU, CAC, LTV, and customer growth."
+  >
+
+  <title>SaaS Metrics Dashboard</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div>
+        <p class="eyebrow">OPEN-SOURCE ANALYTICS</p>
+        <h1>SaaS Metrics Dashboard</h1>
+        <p class="subtitle">
+          Understand your recurring revenue, customer growth,
+          retention, and unit economics in one place.
+        </p>
+      </div>
+
+      <div class="header-actions">
+        <button id="loadSampleBtn" class="button button-secondary" type="button">
+          Load Sample Data
+        </button>
+
+        <button id="resetBtn" class="button button-primary" type="button">
+          Reset
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="notice" aria-label="Demo notice">
+      <strong>Demo dashboard:</strong>
+      Values entered below are processed locally in your browser.
+      This initial version does not send your SaaS data to a server.
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">INPUTS</p>
+          <h2>Business data</h2>
+        </div>
+
+        <p>
+          Enter your current monthly SaaS numbers.
+          The dashboard calculates the core metrics automatically.
+        </p>
+      </div>
+
+      <form id="metricsForm" class="input-grid">
+        <div class="input-card">
+          <label for="mrr">Monthly Recurring Revenue</label>
+
+          <div class="input-wrapper">
+            <span>$</span>
+            <input
+              id="mrr"
+              name="mrr"
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="25000"
+              inputmode="decimal"
+            >
+          </div>
+
+          <small>Recurring revenue generated this month.</small>
+        </div>
+
+        <div class="input-card">
+          <label for="previousMrr">Previous Month MRR</label>
+
+          <div class="input-wrapper">
+            <span>$</span>
+            <input
+              id="previousMrr"
+              name="previousMrr"
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="22000"
+              inputmode="decimal"
+            >
+          </div>
+
+          <small>Used to calculate month-over-month growth.</small>
+        </div>
+
+        <div class="input-card">
+          <label for="customers">Current Customers</label>
+
+          <input
+            id="customers"
+            name="customers"
+            type="number"
+            min="0"
+            step="1"
+            placeholder="240"
+            inputmode="numeric"
+          >
+
+          <small>Current active paying customers.</small>
+        </div>
+
+        <div class="input-card">
+          <label for="startingCustomers">Starting Customers</label>
+
+          <input
+            id="startingCustomers"
+            name="startingCustomers"
+            type="number"
+            min="0"
+            step="1"
+            placeholder="225"
+            inputmode="numeric"
+          >
+
+          <small>Customers at the beginning of the period.</small>
+        </div>
+
+        <div class="input-card">
+          <label for="newCustomers">New Customers</label>
+
+          <input
+            id="newCustomers"
+            name="newCustomers"
+            type="number"
+            min="0"
+            step="1"
+            placeholder="28"
+            inputmode="numeric"
+          >
+
+          <small>New paying customers acquired this month.</small>
+        </div>
+
+        <div class="input-card">
+          <label for="churnedCustomers">Churned Customers</label>
+
+          <input
+            id="churnedCustomers"
+            name="churnedCustomers"
+            type="number"
+            min="0"
+            step="1"
+            placeholder="13"
+            inputmode="numeric"
+          >
+
+          <small>Customers who canceled during the period.</small>
+        </div>
+
+        <div class="input-card">
+          <label for="acquisitionSpend">Acquisition Spend</label>
+
+          <div class="input-wrapper">
+            <span>$</span>
+            <input
+              id="acquisitionSpend"
+              name="acquisitionSpend"
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="7500"
+              inputmode="decimal"
+            >
+          </div>
+
+          <small>Sales and marketing spend used to acquire customers.</small>
+        </div>
+
+        <div class="input-card">
+          <label for="grossMargin">Gross Margin</label>
+
+          <div class="input-wrapper input-wrapper-suffix">
+            <input
+              id="grossMargin"
+              name="grossMargin"
+              type="number"
+              min="0"
+              max="100"
+              step="0.1"
+              placeholder="80"
+              inputmode="decimal"
+            >
+            <span>%</span>
+          </div>
+
+          <small>Revenue remaining after cost of service.</small>
+        </div>
+      </form>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">OVERVIEW</p>
+          <h2>Key metrics</h2>
+        </div>
+
+        <p>
+          A quick view of recurring revenue, growth,
+          retention, and customer economics.
+        </p>
+      </div>
+
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <div class="metric-label">MRR</div>
+          <div id="metricMrr" class="metric-value">$0</div>
+          <div class="metric-description">
+            Monthly recurring revenue
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-label">ARR</div>
+          <div id="metricArr" class="metric-value">$0</div>
+          <div class="metric-description">
+            MRR × 12
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-label">MoM Growth</div>
+          <div id="metricGrowth" class="metric-value">0%</div>
+          <div class="metric-description">
+            Monthly recurring revenue growth
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-label">Customer Churn</div>
+          <div id="metricChurn" class="metric-value">0%</div>
+          <div class="metric-description">
+            Customers lost during the period
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-label">ARPU</div>
+          <div id="metricArpu" class="metric-value">$0</div>
+          <div class="metric-description">
+            Average revenue per customer
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-label">CAC</div>
+          <div id="metricCac" class="metric-value">$0</div>
+          <div class="metric-description">
+            Customer acquisition cost
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-label">Estimated LTV</div>
+          <div id="metricLtv" class="metric-value">$0</div>
+          <div class="metric-description">
+            Estimated customer lifetime value
+          </div>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-label">LTV : CAC</div>
+          <div id="metricLtvCac" class="metric-value">0×</div>
+          <div class="metric-description">
+            Lifetime value relative to acquisition cost
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PERFORMANCE</p>
+          <h2>Revenue & customers</h2>
+        </div>
+
+        <p>
+          Visualize the sample monthly trend data included
+          with the open-source project.
+        </p>
+      </div>
+
+      <div class="chart-grid">
+        <article class="chart-card">
+          <div class="chart-header">
+            <div>
+              <h3>Monthly Recurring Revenue</h3>
+              <p>MRR trend over time</p>
+            </div>
+          </div>
+
+          <div
+            id="revenueChart"
+            class="bar-chart"
+            role="img"
+            aria-label="Monthly recurring revenue chart"
+          >
+            <p class="chart-placeholder">
+              Load sample data to display the revenue trend.
+            </p>
+          </div>
+        </article>
+
+        <article class="chart-card">
+          <div class="chart-header">
+            <div>
+              <h3>Customer Growth</h3>
+              <p>Active customer trend over time</p>
+            </div>
+          </div>
+
+          <div
+            id="customerChart"
+            class="bar-chart"
+            role="img"
+            aria-label="Customer growth chart"
+          >
+            <p class="chart-placeholder">
+              Load sample data to display customer growth.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section formulas-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">TRANSPARENCY</p>
+          <h2>How the metrics are calculated</h2>
+        </div>
+
+        <p>
+          The formulas are intentionally visible so contributors
+          can review and improve the methodology.
+        </p>
+      </div>
+
+      <div class="formula-grid">
+        <article>
+          <h3>ARR</h3>
+          <code>MRR × 12</code>
+        </article>
+
+        <article>
+          <h3>MoM Growth</h3>
+          <code>
+            (Current MRR - Previous MRR) / Previous MRR
+          </code>
+        </article>
+
+        <article>
+          <h3>Customer Churn</h3>
+          <code>
+            Churned Customers / Starting Customers
+          </code>
+        </article>
+
+        <article>
+          <h3>ARPU</h3>
+          <code>
+            MRR / Active Customers
+          </code>
+        </article>
+
+        <article>
+          <h3>CAC</h3>
+          <code>
+            Acquisition Spend / New Customers
+          </code>
+        </article>
+
+        <article>
+          <h3>Estimated LTV</h3>
+          <code>
+            (ARPU × Gross Margin) / Customer Churn Rate
+          </code>
+        </article>
+      </div>
+
+      <p class="methodology-note">
+        These calculations are simplified operational metrics intended
+        for educational and analytical use. Different SaaS businesses
+        may use different accounting or cohort methodologies.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div>
+        <strong>SaaS Metrics Dashboard</strong>
+        <p>
+          Open-source analytics for SaaS founders,
+          developers, and contributors.
+        </p>
+      </div>
+
+      <a
+        href="https://github.com/0utshining/saas-metrics-dashboard"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View on GitHub
+      </a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
