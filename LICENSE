@@ -1,0 +1,50 @@
+# Contributing to SaaS Metrics Dashboard
+
+Thank you for your interest in contributing to SaaS Metrics Dashboard.
+
+This project aims to provide a simple, transparent, and useful open-source
+dashboard for understanding common SaaS business metrics.
+
+## Ways to contribute
+
+Contributions are welcome in areas including:
+
+- Bug fixes
+- Accessibility improvements
+- Documentation
+- UI and responsive-design improvements
+- Additional SaaS metrics
+- Data import and export
+- Testing
+- Performance improvements
+- Metric methodology and formula reviews
+- New visualization features
+
+## Getting started
+
+1. Fork the repository.
+2. Clone your fork.
+3. Create a branch for your change.
+4. Make and test your changes.
+5. Commit your work with a descriptive commit message.
+6. Push the branch to your fork.
+7. Open a pull request.
+
+Because the current dashboard uses HTML, CSS, and JavaScript without external
+runtime dependencies, you can run it by opening `index.html` in a modern web
+browser.
+
+## Development principles
+
+Please keep contributions:
+
+- Easy to understand
+- Accessible where practical
+- Responsive across desktop and mobile
+- Free of unnecessary dependencies
+- Transparent about how metrics are calculated
+- Clearly documented
+
+## Sample data
+
+All demonstration
