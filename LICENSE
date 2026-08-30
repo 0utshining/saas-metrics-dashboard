@@ -1,50 +1,21 @@
-# Contributing to SaaS Metrics Dashboard
+MIT License
 
-Thank you for your interest in contributing to SaaS Metrics Dashboard.
+Copyright (c) 2026 0utshining
 
-This project aims to provide a simple, transparent, and useful open-source
-dashboard for understanding common SaaS business metrics.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Ways to contribute
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Contributions are welcome in areas including:
-
-- Bug fixes
-- Accessibility improvements
-- Documentation
-- UI and responsive-design improvements
-- Additional SaaS metrics
-- Data import and export
-- Testing
-- Performance improvements
-- Metric methodology and formula reviews
-- New visualization features
-
-## Getting started
-
-1. Fork the repository.
-2. Clone your fork.
-3. Create a branch for your change.
-4. Make and test your changes.
-5. Commit your work with a descriptive commit message.
-6. Push the branch to your fork.
-7. Open a pull request.
-
-Because the current dashboard uses HTML, CSS, and JavaScript without external
-runtime dependencies, you can run it by opening `index.html` in a modern web
-browser.
-
-## Development principles
-
-Please keep contributions:
-
-- Easy to understand
-- Accessible where practical
-- Responsive across desktop and mobile
-- Free of unnecessary dependencies
-- Transparent about how metrics are calculated
-- Clearly documented
-
-## Sample data
-
-All demonstration
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
