@@ -1,0 +1,66 @@
+{
+  "description": "Synthetic demonstration data for the SaaS Metrics Dashboard. These values do not represent real company performance or project adoption.",
+  "currency": "USD",
+  "currentPeriod": {
+    "mrr": 25000,
+    "previousMrr": 22000,
+    "customers": 240,
+    "startingCustomers": 225,
+    "newCustomers": 28,
+    "churnedCustomers": 13,
+    "acquisitionSpend": 7500,
+    "grossMargin": 80
+  },
+  "revenueHistory": [
+    {
+      "month": "Mar",
+      "mrr": 14500
+    },
+    {
+      "month": "Apr",
+      "mrr": 16200
+    },
+    {
+      "month": "May",
+      "mrr": 18100
+    },
+    {
+      "month": "Jun",
+      "mrr": 19800
+    },
+    {
+      "month": "Jul",
+      "mrr": 22000
+    },
+    {
+      "month": "Aug",
+      "mrr": 25000
+    }
+  ],
+  "customerHistory": [
+    {
+      "month": "Mar",
+      "customers": 151
+    },
+    {
+      "month": "Apr",
+      "customers": 166
+    },
+    {
+      "month": "May",
+      "customers": 184
+    },
+    {
+      "month": "Jun",
+      "customers": 201
+    },
+    {
+      "month": "Jul",
+      "customers": 225
+    },
+    {
+      "month": "Aug",
+      "customers": 240
+    }
+  ]
+}
